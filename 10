@@ -1,0 +1,45 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
+
+public class FileHandlingDemo {
+    private static final String FILE_NAME = "students.txt";
+    
+    public static void main(String[] args) {
+        List<String> students = Arrays.asList("Юлия", "Александр", "Даша", "Арсений", "Анжела");
+        
+        System.out.println("Список студентов для сохранения:");
+        for (String student : students) {
+            System.out.println("- " + student);
+        }
+        
+        writeStudentsToFile(students);
+        readStudentsFromFile();
+    }
+    
+    private static void writeStudentsToFile(List<String> students) {
+        try (FileWriter writer = new FileWriter(FILE_NAME)) {
+            for (String student : students) {
+                writer.write(student + "\n");
+            }
+            System.out.println("\nСписок студентов успешно сохранён в файл " + FILE_NAME);
+        } catch (IOException e) {
+            System.err.println("Ошибка при записи в файл: " + e.getMessage());
+        }
+    }
+    
+    private static void readStudentsFromFile() {
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(FILE_NAME));
+            System.out.println("\nСписок студентов из файла:");
+            for (String student : lines) {
+                System.out.println("- " + student);
+            }
+        } catch (IOException e) {
+            System.err.println("Ошибка при чтении файла: " + e.getMessage());
+        }
+    }
+}
