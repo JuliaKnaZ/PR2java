@@ -1,0 +1,26 @@
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
+public class BirthdayAnalyzer {
+    public static void main(String[] args) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        
+        LocalDate today = LocalDate.now();
+        LocalDate birthDate = LocalDate.of(2001, 10, 18);
+        
+        Period age = Period.between(birthDate, today);
+        
+        LocalDate nextBirthday = birthDate.withYear(today.getYear());
+        if (nextBirthday.isBefore(today) || nextBirthday.isEqual(today)) {
+            nextBirthday = nextBirthday.plusYears(1);
+        }
+        long daysUntilNextBirthday = Period.between(today, nextBirthday).getDays();
+        
+        System.out.println("Текущая дата: " + today.format(formatter));
+        System.out.println("Дата рождения: " + birthDate.format(formatter));
+        System.out.println("Возраст: " + age.getYears() + " лет, " + age.getMonths() + " месяцев, " + age.getDays() + " дней");
+        System.out.println("Следующий день рождения: " + nextBirthday.format(formatter));
+        System.out.println("До следующего дня рождения осталось: " + daysUntilNextBirthday + " дней");
+    }
+}
