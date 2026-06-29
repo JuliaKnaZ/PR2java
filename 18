@@ -1,0 +1,35 @@
+public class MatrixSum {
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {5, 8, 3},
+            {9, 2, 7},
+            {4, 6, 1}
+        };
+        
+        System.out.println("=== Матрица 3x3 ===");
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+        
+        int sum = 0;
+        
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                sum += matrix[i][j];
+            }
+        }
+        
+        System.out.println("Сумма всех элементов матрицы: " + sum);
+    }
+}
+Вывод:
+=== Матрица 3x3 ===
+5 8 3 
+9 2 7 
+4 6 1 
+
+Сумма всех элементов матрицы: 45
