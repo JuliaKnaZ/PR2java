@@ -1,0 +1,60 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Journal {
+    public static void main(String[] args) {
+        Map<String, Integer> journal = new HashMap<>();
+        
+        journal.put("Влада", 95);
+        journal.put("Арсений", 78);
+        journal.put("Василиса", 88);
+        journal.put("Артем", 92);
+        journal.put("Матвей", 85);
+        
+        System.out.println("=== Журнал успеваемости ===");
+        System.out.println("Все студенты и их оценки:");
+        for (Map.Entry<String, Integer> entry : journal.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+        System.out.println();
+        
+        String studentName = "Арсений";
+        Integer grade = journal.get(studentName);
+        if (grade != null) {
+            System.out.println("Оценка студента " + studentName + ": " + grade);
+        } else {
+            System.out.println("Студент " + studentName + " не найден в журнале");
+        }
+        System.out.println();
+        
+        String checkName = "Арсений";
+        if (journal.containsKey(checkName)) {
+            System.out.println("Студент " + checkName + " есть в журнале");
+        } else {
+            System.out.println("Студента " + checkName + " нет в журнале");
+        }
+        
+        checkName = "Сергей";
+        if (journal.containsKey(checkName)) {
+            System.out.println("Студент " + checkName + " есть в журнале");
+        } else {
+            System.out.println("Студента " + checkName + " нет в журнале");
+        }
+        System.out.println();
+        
+        String removeName = "Артем";
+        Integer removedGrade = journal.remove(removeName);
+        if (removedGrade != null) {
+            System.out.println("Студент " + removeName + " с оценкой " + removedGrade + " удален из журнала");
+        } else {
+            System.out.println("Студент " + removeName + " не найден в журнале");
+        }
+        System.out.println();
+        
+        System.out.println("=== Оставшиеся студенты в журнале ===");
+        System.out.println("Количество студентов: " + journal.size());
+        for (Map.Entry<String, Integer> entry : journal.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
+}
