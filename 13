@@ -1,0 +1,46 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+import java.util.Map;
+
+public class StudentManager {
+    public static void main(String[] args) {
+        List<String> studentList = new ArrayList<>();
+        studentList.add("Юля");
+        studentList.add("Саша");
+        studentList.add("Дима");
+        studentList.add("Артем");
+        studentList.add("Саша");
+
+        System.out.println("=== Список студентов (ArrayList) ===");
+        System.out.println("Количество студентов: " + studentList.size());
+        System.out.println("Список: " + studentList);
+        System.out.println();
+
+        Set<String> uniqueStudents = new HashSet<>(studentList);
+
+        System.out.println("=== Уникальные студенты (HashSet) ===");
+        System.out.println("Количество уникальных студентов: " + uniqueStudents.size());
+        System.out.println("Множество: " + uniqueStudents);
+        System.out.println();
+
+        Map<String, Integer> studentGrades = new HashMap<>();
+
+        studentGrades.put("Юля", 95);
+        studentGrades.put("Саша", 78);
+        studentGrades.put("Дима", 88);
+        studentGrades.put("Артем", 92);
+
+        System.out.println("=== Оценки студентов (HashMap) ===");
+        System.out.println("Количество записей: " + studentGrades.size());
+        System.out.println("Словарь: " + studentGrades);
+        System.out.println();
+
+        System.out.println("=== Детальная информация ===");
+        for (Map.Entry<String, Integer> entry : studentGrades.entrySet()) {
+            System.out.println("Студент: " + entry.getKey() + ", Балл: " + entry.getValue());
+        }
+    }
+}
