@@ -1,0 +1,63 @@
+public class MultithreadingDemo {
+    public static void main(String[] args) {
+        System.out.println("=== Запуск многопоточного приложения ===");
+        System.out.println("Основной поток начал выполнение");
+        System.out.println();
+        
+        Thread numberThread = new Thread(new NumberTask());
+        Thread letterThread = new Thread(new LetterTask());
+        
+        numberThread.start();
+        letterThread.start();
+        
+        try {
+            numberThread.join();
+            letterThread.join();
+        } catch (InterruptedException e) {
+            System.out.println("Основной поток был прерван");
+            e.printStackTrace();
+        }
+        
+        System.out.println();
+        System.out.println("=== Все потоки завершили выполнение ===");
+        System.out.println("Основной поток завершил работу");
+    }
+}
+
+class NumberTask implements Runnable {
+    @Override
+    public void run() {
+        System.out.println("Поток NumberTask начал выполнение");
+        
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("NumberTask: " + i);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                System.out.println("Поток NumberTask был прерван");
+                e.printStackTrace();
+            }
+        }
+        
+        System.out.println("Поток NumberTask завершил выполнение");
+    }
+}
+
+class LetterTask implements Runnable {
+    @Override
+    public void run() {
+        System.out.println("Поток LetterTask начал выполнение");
+        
+        for (char c = 'A'; c <= 'E'; c++) {
+            System.out.println("LetterTask: " + c);
+            try {
+                Thread.sleep(700);
+            } catch (InterruptedException e) {
+                System.out.println("Поток LetterTask был прерван");
+                e.printStackTrace();
+            }
+        }
+        
+        System.out.println("Поток LetterTask завершил выполнение");
+    }
+}
